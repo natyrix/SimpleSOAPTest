@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" crossorigin="anonymous" />
+    <title>Home</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Home</h1>
+        <a href="{% url 'make_request' %}" class="btn btn-primary">Make Request</a>
+        {% if resp %}
+            <div id="response-div">
+                <div class="">Request To: {{request_to}}</div>
+                <div class=""><h6>Requested Service:</h6>
+                   <div class="">
+                    <textarea rows="20" cols="100" style="border: none; background-color: antiquewhite;">
+                        <?xml version="1.0" encoding="utf-8"?>
+                        <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+                            <soap:Body>
+                                <Add xmlns="http://tempuri.org/">
+                                <intA>12</intA>
+                                <intB>13</intB>
+                                </Add>
+                            </soap:Body>
+                        </soap:Envelope>
+                   </textarea>
+                   </div>
+                </div> 
+                <h6>Requested Method: Add(intA: xsd:int, intB: xsd:int) -> AddResult: xsd:int</h6>
+                <div class=""><h6>Response Tag:</h6> 
+                    <textarea rows="20" cols="100" style="border: none; background-color: antiquewhite;">
+                        <?xml version="1.0" encoding="utf-8"?>
+                        <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+                          <soap:Body>
+                            <AddResponse xmlns="http://tempuri.org/">
+                              <AddResult>25</AddResult>
+                            </AddResponse>
+                          </soap:Body>
+                        </soap:Envelope>
+                    </textarea>
+                 </div> 
+                <div class=""><strong>Your response: {{resp}}</strong></div>
+                <div class=""><strong>Your randomly generated Token: {{token}}</strong></div>
+            </div>
+        {% endif %}
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js" integrity="sha512-XKa9Hemdy1Ui3KSGgJdgMyYlUg1gM+QhL6cnlyTe2qzMCYm4nAZ1PsVerQzTTXzonUR+dmswHqgJPuwCq1MaAg==" crossorigin="anonymous"></script>
+</body>
+</html>
